@@ -1,0 +1,107 @@
+/* Reset Default Space */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* for body */
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* background: linear-gradient(270deg, #00c6ff, #0072ff, #396afc, #00c6ff); */
+  background: linear-gradient(270deg, #00e0ff, #0084ff, #0059ff, #00e0ff);
+  background-size: 600% 600%;
+  animation: gradientMove 10s ease infinite;
+}
+
+/* Gradient animation */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* for calculator */
+div.calculator {
+  background-color: aqua;
+  border: 1px solid #717377;
+  padding: 20px;
+  border-radius: 16px;
+  background: transparent;
+  box-shadow: 0px 3px 15px rgba(113, 115, 119, 0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* for input box */
+input {
+  width: 320px;
+  border: none;
+  outline: none;
+  padding: 24px;
+  margin: 10px;
+  background: transparent;
+  box-shadow: 0px 3px 15px rgba(84, 84, 84, 0.1);
+  font-size: 40px;
+  text-align: right;
+  cursor: pointer;
+  color: #fff;
+  /* Inset shadow makes it look like it's carved into the glass */
+  box-shadow:
+    inset 2px 2px 5px rgba(0, 0, 0, 0.1),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.1);
+}
+
+/* For input placeholder */
+input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* For button */
+button {
+  border: none;
+  width: 60px;
+  height: 60px;
+  margin: 10px;
+  border-radius: 60px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 20px;
+  box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+/* when hover */
+button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+  transition: 0.2s;
+}
+
+/* when active */
+button:active {
+  transform: scale(0.95); /* Shrinks slightly when clicked */
+}
+
+/* For Equal Button */
+button.equalBtn {
+  background-color: #fb7c14;
+}
+
+/* For Operator */
+button.operator {
+  color: #6dee0a;
+}

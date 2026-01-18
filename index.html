@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCalculator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="calculator">
+        <input type="text" id="inputBox" placeholder="0" readonly>
+        <div>
+            <button onclick="resetValue()">AC</button>
+            <button onclick="removeLast()">DEL</button>
+            <button onclick="displayValue('%')">%</button>
+            <button onclick="displayValue('/')" class="operator">/</button>
+        </div>
+        <div>
+            <button onclick="displayValue('7')">7</button>
+            <button onclick="displayValue('8')">8</button>
+            <button onclick="displayValue('9')">9</button>
+            <button onclick="displayValue('*')" class="operator">*</button>
+        </div>
+        <div>
+            <button onclick="displayValue('4')">4</button>
+            <button onclick="displayValue('5')">5</button>
+            <button onclick="displayValue('6')">6</button>
+            <button onclick="displayValue('-')" class="operator">-</button>
+        </div>
+        <div>
+            <button onclick="displayValue('1')">1</button>
+            <button onclick="displayValue('2')">2</button>
+            <button onclick="displayValue('3')">3</button>
+            <button onclick="displayValue('+')" class="operator">+</button>
+        </div>
+        <div>
+            <button onclick="displayValue('00')">00</button>
+            <button onclick="displayValue('0')">0</button>
+            <button onclick="displayValue('.')">.</button>
+            <button onclick="calculate()" class="equalBtn">=</button>
+        </div>
+    </div>
+    <script>
+
+        //get the input Element using Id
+        function inputField() {
+            var inputElement = document.getElementById('inputBox');
+            return inputElement;
+        }
+
+        // Display the value into the input box
+        const displayValue = function (val) {
+            var setVal = inputField();
+            // List of values that should be cleared before starting a new entry
+            const resetTerms = ["Error", "undefined", "NaN", "Infinity"];
+            // If screen currently shows Error or is just 0, replace it instead of appending
+            if (resetTerms.includes(setVal.value)) {
+                setVal.value = val;
+            } else {
+                setVal.value += val;
+            }
+        }
+
+        // Reset the value by pressing the button 'AC'
+        const resetValue = function () {
+            var clearVal = inputField();
+            clearVal.value = "";
+        }
+
+        // Reset the last value by pressing the button 'DEL'
+        const removeLast = function () {
+            var remove = inputField();
+            if (remove.value.length > 0) {
+                remove.value = remove.value.substring(0, remove.value.length - 1);
+            }
+        }
+
+        // Calculate the result when pressing the button '=' 
+        const calculate = function () {
+            var inputEl = inputField();
+            // inputEl.value = eval(inputEl.value);
+            try {
+                // Replace '%' with '/100' before evaluating
+                let expression = inputEl.value.replace(/%/g, '/100');
+                inputEl.value = Function("return " + expression)();
+            } catch {
+                inputEl.value = "Error";
+            }
+        }
+    </script>
+</body>
+
+</html>
